@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de biblioteca</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+<body>
+    <main>
+        <form class="form-contact" method="POST">{% csrf_token %}
+            <h2>Inicio de sesión</h2>
+            <input type="text" name="username" placeholder="Usuario..." required>
+            <input type="password" name="password" placeholder="Contraseña..." required>
+            <button type="submit">
+                Entrar
+                <i class="fa-solid fa-paper-plane"></i>
+                <span class="overlay"></span>
+            </button>
+        </form>
+    </main>
+</body>
+</html>

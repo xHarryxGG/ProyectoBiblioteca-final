@@ -1,0 +1,107 @@
+{% extends "./index.html" %}
+
+{% block title %} Edición de Prestamos {% endblock %}
+
+{% block body %}
+
+<div class="edicion">
+    <h2>Edición de Prestamo</h2>
+    <div class="card">
+        <div class="card-body">
+            <form action="/editarPrestamo/" method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtCodigo" name="txtCodigo" class="form-control"
+                        placeholder="Código..." maxlength="20" required readonly value="{{Prestamo.codigo}}">
+                </div>
+                <div class="form-group">
+                    <select type="text" id="txtAutor" name="txtAutor" class="form-control form-select"
+                        placeholder="Autor..." required value="{{Prestamo.autor}}">
+                        <option value="{{Prestamo.autor}}" selected class="text-muted">{{Prestamo.autor}}</option>
+                        {% for i in libros %}
+                        <option value="{{i.autor}}">{{i.autor}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select type="text" id="txtTitulo" name="txtTitulo" class="form-control form-select"
+                        placeholder="Titulo..." required value="{{Prestamo.titulo}}">
+                        <option value="{{Prestamo.titulo}}" selected class="text-muted">{{Prestamo.titulo}}</option>
+                        {% for i in libros %}
+                        <option value="{{i.titulo}}">{{i.titulo}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select type="text" id="txtTipoUsuario" name="txtTipoUsuario" class="form-control form-select"
+                        placeholder="Titulo..." required value="{{Prestamo.tipoUsuario}}">
+                        <option value="{{Prestamo.tipoUsuario}}" selected class="text-muted">{{Prestamo.tipoUsuario}}</option>
+                        <option value="Estudiante">Estudiante</option>
+                        <option value="Académico">Académico</option>
+                        <option value="Administrativo">Administrativo</option>
+                        <option value="Externo">Externo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select type="text" id="txtTipoPrestamo" name="txtTipoPrestamo" class="form-control form-select"
+                        placeholder="Titulo..." required value="{{Prestamo.tipoPrestamo}}">
+                        <option value="{{Prestamo.tipoPrestamo}}" selected class="text-muted">{{Prestamo.tipoPrestamo}}</option>
+                        <option value="Circulante">Circulante</option>
+                        <option value="Interno" id="interno">Interno</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="txtCedula" name="txtCedula" class="form-control"
+                        placeholder="Cédula..." minlength="8" maxlength="8" required value="{{Prestamo.cedula}}">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre..."
+                        maxlength="20" required value="{{Prestamo.nombre}}">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtApellido" name="txtApellido" class="form-control"
+                        placeholder="Apellido..." maxlength="20" required value="{{Prestamo.apellido}}">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtSemestre" name="txtSemestre" class="form-control"
+                        placeholder="Semestre..." maxlength="2" required value="{{Prestamo.semestre}}">
+                </div>
+                <div class="form-group escuela-container">
+                    <select type="text" id="txtEscuela" name="txtEscuela" class="form-control form-select"
+                        placeholder="Escuela..." maxlength="20" value="{{Prestamo.escuela}}">
+                        <option value="{{Prestamo.escuela}}" selected class="text-muted">{{Prestamo.escuela}}</option>
+                        <option value="Ingeniería">Ingeniería</option>
+                        <option value="Derecho">Derecho</option>
+                        <option value="Ingeniería y derecho">Ingeniería y derecho</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtBiblio" name="txtBiblio" class="form-control"
+                        placeholder="Bibliotecari@..." maxlength="40" required value="{{Prestamo.bibliotecaria}}">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="txtFechaIni" name="txtFechaIni" class="form-control"
+                        placeholder="Fecha expedición..." required value="{{Prestamo.fechaInicial}}">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="txtFechaFin" name="txtFechaFin" class="form-control"
+                        placeholder="Fecha entrega..." required value="{{Prestamo.fechaFinal}}">
+                </div>
+                <div class="form-group">
+                    <textarea name="txtObservaciones" class="form-control" id="txtObservaciones" cols="30" rows="5"
+                        placeholder="Observaciones..." style="resize: none;" value="{{Prestamo.observaciones}}">
+                    </textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">
+                        Guardar
+                        <span class="overlay"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

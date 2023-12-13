@@ -1,0 +1,181 @@
+{% extends "./index.html" %}
+
+{% block title %} Gestión de Prestamos {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex  justify-content-center align-items-center flex-column">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissible alert-danger fade show alerta" role="alert">
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <h2 class="d-flex  justify-content-center">Registrar de Prestamo</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarPrestamo/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <select type="text" id="txtAutor" name="txtAutor" class="form-control form-select"
+                            placeholder="Autor..." required>
+                            <option value="" disabled selected class="text-muted">Autor...</option>
+                            {% for i in libros %}
+                            <option value="{{i.autor}}">{{i.autor}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select type="text" id="txtTitulo" name="txtTitulo" class="form-control form-select"
+                            placeholder="Titulo..." required>
+                            <option value="" disabled selected class="text-muted">Título...</option>
+                            {% for i in libros %}
+                            <option value="{{i.titulo}}">{{i.titulo}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select type="text" id="txtTipoUsuario" name="txtTipoUsuario" class="form-control form-select"
+                            placeholder="Titulo..." required>
+                            <option value="" disabled selected class="text-muted">Tipo de usuario...</option>
+                            <option value="Estudiante">Estudiante</option>
+                            <option value="Académico">Académico</option>
+                            <option value="Administrativo">Administrativo</option>
+                            <option value="Externo">Externo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select type="text" id="txtTipoPrestamo" name="txtTipoPrestamo" class="form-control form-select"
+                            placeholder="Titulo..." required>
+                            <option value="" disabled selected class="text-muted">Tipo de prestamo...</option>
+                            <option value="Circulante">Circulante</option>
+                            <option value="Interno" id="interno">Interno</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select type="text" id="txtCedula" class="form-control form-select txtCedulaPres cedulaEstudiantes"
+                            placeholder="Cédula...">
+                            <option value="" disabled selected class="text-muted">Cédula...</option>
+                            {% for i in estudiantes%}
+                            <option value="{{i.cedula}}" data-nombre="{{ i.nombre }}" data-apellido="{{ i.apellido }}" data-semestre="{{i.semestre}}" data-escuela="{{i.escuela}}">{{i.cedula}}</option>
+                            {% endfor %}
+                        </select>
+                        <select type="text" id="txtCedula" class="form-control form-select txtCedulaPres cedulaAcademicos"
+                            placeholder="Cédula...">
+                            <option value="" disabled selected class="text-muted">Cédula...</option>
+                            {% for i in academicos%}
+                            <option value="{{i.cedula}}" data-nombre="{{ i.nombre }}" data-apellido="{{ i.apellido }}" data-semestre="{{i.semestre}}" data-escuela="{{i.escuela}}">{{i.cedula}}: "{{i.nombre}}"</option>
+                            {% endfor %}
+                        </select>
+                        <select type="text" id="txtCedula"class="form-control form-select txtCedulaPres cedulaAdministrativos"
+                            placeholder="Cédula...">
+                            <option value="" disabled selected class="text-muted">Cédula...</option>
+                            {% for i in administrativos%}
+                            <option value="{{i.cedula}}" data-nombre="{{ i.nombre }}" data-apellido="{{ i.apellido }}" data-semestre="{{i.semestre}}" data-escuela="{{i.escuela}}">{{i.cedula}}: "{{i.nombre}}"</option>
+                            {% endfor %}
+                        </select>
+                        <input type="number" id="txtCedula" class="form-control txtCedulaPres cedulaExternos"
+                            placeholder="Cédula..." minlength="8" maxlength="8">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control txtNombrePres" placeholder="Nombre..."
+                            maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control txtApellidoPres"
+                            placeholder="Apellido..." maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtSemestre" name="txtSemestre" class="form-control txtSemestrePres"
+                            placeholder="Semestre..." maxlength="2">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtEscuela" name="txtEscuela" class="form-control txtEscuelaPres"
+                            placeholder="Escuela..." maxlength="2">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtBiblio" name="txtBiblio" class="form-control"
+                            placeholder="Bibliotecari@..." maxlength="40" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="txtFechaIni" name="txtFechaIni" class="form-control"
+                            placeholder="Fecha expedición..." required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="txtFechaFin" name="txtFechaFin" class="form-control"
+                            placeholder="Fecha entrega..." required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="txtObservaciones" class="form-control" id="txtObservaciones" cols="30" rows="5"
+                            placeholder="Observaciones..." style="resize: none;">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">
+                            Guardar
+                            <span class="overlay"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h2 class="d-flex  justify-content-center">Listado de Prestamos</h2>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Código</th>
+                        <th class="text-center">Autor</th>
+                        <th class="text-center">Título</th>
+                        <th class="text-center">Tipo de Usuario</th>
+                        <th class="text-center">Tipo de Prestamo</th>
+                        <th class="text-center">C.I</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Semestre</th>
+                        <th class="text-center">Escuela</th>
+                        <th class="text-center">Bibliotecaria</th>
+                        <th class="text-center">Fecha Inicial</th>
+                        <th class="text-center">Fecha Final</th>
+                        <th class="text-center">Observaciones</th>
+                        <th class="text-center">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in prestamos %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{c.codigo}}</td>
+                        <td>{{c.autor}}</td>
+                        <td>{{c.titulo}}</td>
+                        <td>{{c.tipoUsuario}}</td>
+                        <td>{{c.tipoPrestamo}}</td>
+                        <td>{{c.cedula}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.apellido}}</td>
+                        <td>{{c.semestre}}</td>
+                        <td>{{c.escuela}}</td>
+                        <td>{{c.bibliotecaria}}</td>
+                        <td>{{c.fechaInicial}}</td>
+                        <td>{{c.fechaFinal}}</td>
+                        <td>{{c.observaciones}}</td>
+                        <td>
+                            <a href="../edicionPrestamo/{{c.codigo}}" class="btn btn-info">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="../eliminarPrestamo/{{c.codigo}}" class="btn btn-danger btnEliminacion">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

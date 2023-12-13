@@ -1,0 +1,40 @@
+{% extends "./index.html" %}
+
+{% block title %} Edición de Académicos {% endblock %}
+
+{% block body %}
+
+<div class="edicion">
+    <h2>Edición de Académico</h2>
+    <div class="card">
+        <div class="card-body">
+            <form action="/editarAcademico/" method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtCedula" name="txtCedula" value="{{Academico.cedula}}"
+                        class="form-control" placeholder="Cédula" minlength="8" maxlength="8" required readonly>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtNombre" name="txtNombre" value="{{Academico.nombre}}"
+                        class="form-control" placeholder="Nombre" maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtApellido" name="txtApellido" value="{{Academico.apellido}}"
+                        class="form-control" placeholder="Apellido" maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtEscuela" name="txtEscuela" value="{{Academico.escuela}}"
+                        class="form-control" placeholder="Escuela" maxlength="20" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">
+                        Guardar
+                        <span class="overlay"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

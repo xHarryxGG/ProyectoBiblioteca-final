@@ -1,0 +1,90 @@
+{% extends "./index.html" %}
+
+{% block title %} Gestión de Académicos {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex  justify-content-center align-items-center flex-column">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissible alert-danger fade show alerta" role="alert">
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <h2 class="d-flex  justify-content-center">Registro de Académico</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="../registrarAcademico/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="txtCedula" name="txtCedula" class="form-control" placeholder="Cédula..."
+                            minlength="8" maxlength="8" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre..."
+                            maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido..."
+                            maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <select type="text" id="txtEscuela" name="txtEscuela" class="form-control form-select" placeholder="Escuela..."
+                            maxlength="20" required>
+                            <option value="" disabled selected class="text-muted">Escuela...</option>
+                            <option value="Ingeniería">Ingeniería</option>
+                            <option value="Derecho">Derecho</option>
+                            <option value="Ingeniería y derecho">Ingeniería y derecho</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit">
+                            Guardar
+                            <span class="overlay"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h2 class="d-flex  justify-content-center">Listado de Académicos</h2>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">C.I</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Escuela</th>
+                        <th class="text-center">Nº Prestamos</th>
+                        <th class="text-center">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in academicos %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{c.cedula}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.apellido}}</td>
+                        <td>{{c.escuela}}</td>
+                        <td>{{c.prestamos}}</td>
+                        <td>
+                            <a href="../edicionAcademico/{{c.cedula}}" class="btn btn-info">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="../eliminarAcademico/{{c.cedula}}" class="btn btn-danger btnEliminacion">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

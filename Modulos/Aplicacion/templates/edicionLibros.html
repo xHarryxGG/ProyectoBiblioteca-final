@@ -1,0 +1,52 @@
+{% extends "./index.html" %}
+
+{% block title %} Edición de Libro {% endblock %}
+
+{% block body %}
+
+<div class="edicion">
+    <h2>Edición de Libro</h2>
+    <div class="card">
+        <div class="card-body">
+            <form action="/editarLibro/" method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtTitulo" name="txtTitulo"  value="{{Libro.titulo}}" class="form-control" placeholder="Título..."
+                        maxlength="20" required readonly>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtAutor" name="txtAutor" value="{{Libro.autor}}" class="form-control" placeholder="Autor..."
+                        maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtCota" name="txtCota" value="{{Libro.cota}}" class="form-control" placeholder="Cota..."
+                        maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtEditorial" name="txtEditorial" value="{{Libro.editorial}}" class="form-control" placeholder="Editorial..."
+                        maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtEdicion" name="txtEdicion" value="{{Libro.edicion}}" class="form-control" placeholder="Edición..."
+                        maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtAño" name="txtAño" value="{{Libro.año}}" class="form-control" placeholder="Año..."
+                        maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtCantidad" name="txtCantidad" value="{{Libro.cantidad}}" class="form-control" placeholder="Cantidad..."
+                        maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">
+                        Guardar
+                        <span class="overlay"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
