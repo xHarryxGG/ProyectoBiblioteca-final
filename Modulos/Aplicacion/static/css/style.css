@@ -218,13 +218,10 @@ main td .btn {
 }
 
 @media (max-width: 550px) {
-  header h2 {
+  header .name h2 {
     font-size: medium;
     width: 115px;
     margin-left: 0 !important;
-  }
-  header img {
-    width: 40px;
   }
   main {
     padding: 20px 15px;

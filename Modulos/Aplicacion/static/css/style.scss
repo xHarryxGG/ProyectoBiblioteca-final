@@ -65,6 +65,7 @@ header {
             align-items: center;
             text-align: center;
             box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+
             
         }
     
@@ -259,15 +260,15 @@ main {
 
 @media (max-width: 550px){
     header {
-        h2 {
-            font-size: medium;
-            width: 115px;
-            margin-left: 0!important;
+        .name {
+            h2 {
+                font-size: medium;
+                width: 115px;
+                margin-left: 0!important;
+            }
+    
         }
-
-        img {
-            width: 40px;
-        }
+        
     }
 
     main {
