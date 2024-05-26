@@ -173,7 +173,6 @@ def registrarLibro(request):
     año = request.POST['txtAño']
     cantidad = request.POST['txtCantidad']
     cantidadPres = prestamo.objects.filter(titulo=titulo).count()
-    codigoBarras = request.POST['']
 
     Libro = libro.objects.create(titulo = titulo, autor = autor, cota = cota, editorial = editorial, edicion = edicion, año = año, cantidad = cantidad, cantidadPres = cantidadPres)
 

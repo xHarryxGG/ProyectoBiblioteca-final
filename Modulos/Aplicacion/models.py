@@ -67,7 +67,6 @@ class libro(models.Model):
     año = models.CharField(max_length=20)
     cantidad = models.CharField(max_length=6, default=0)
     cantidadPres = models.CharField(max_length=6, default=0)
-    codigoBarras = models.CharField(max_length=20, unique=True)
 
     def __str__(self):
         return f"{self.autor} {self.titulo}"
