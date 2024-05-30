@@ -165,6 +165,7 @@ def homeLibros(request):
 
 
 def registrarLibro(request):
+    codigolibro = request.POST['txtCodigolibro']
     titulo = request.POST['txtTitulo']
     autor = request.POST['txtAutor']
     cota = request.POST['txtCota']
@@ -172,27 +173,29 @@ def registrarLibro(request):
     edicion = request.POST['txtEdicion']
     año = request.POST['txtAño']
     cantidad = request.POST['txtCantidad']
-    cantidadPres = prestamo.objects.filter(titulo=titulo).count()
+    cantidadPres = prestamo.objects.filter(codigolibro=codigolibro).count()
+    
 
-    Libro = libro.objects.create(titulo = titulo, autor = autor, cota = cota, editorial = editorial, edicion = edicion, año = año, cantidad = cantidad, cantidadPres = cantidadPres)
+    Libro = libro.objects.create(codigolibro = codigolibro, titulo = titulo, autor = autor, cota = cota, editorial = editorial, edicion = edicion, año = año, cantidad = cantidad, cantidadPres = cantidadPres)
 
     return redirect('/li')
 
-def eliminarLibro(request, titulo):
-    if not prestamo.objects.filter(titulo=titulo).exists():
-        Libro = libro.objects.get(titulo=titulo)
+def eliminarLibro(request, codigolibro):
+    if not prestamo.objects.filter(codigolibro=codigolibro).exists():
+        Libro = libro.objects.get(codigolibro=codigolibro)
         Libro.delete()
     else:
         messages.error(request, "ERROR:  No se pudo eliminar porque posee un prestamo")
 
     return redirect('/li')
 
-def edicionLibro(request, titulo):
-    Libro = libro.objects.get(titulo=titulo)
+def edicionLibro(request, codigolibro):
+    Libro = libro.objects.get(codigolibro=codigolibro)
 
     return render(request, "edicionLibros.html", {"Libro": Libro})
 
 def editarLibro(request):
+    codigolibro = request.POST['txtCodigolibro']
     titulo = request.POST['txtTitulo']
     autor = request.POST['txtAutor']
     cota = request.POST['txtCota']
@@ -200,9 +203,9 @@ def editarLibro(request):
     edicion = request.POST['txtEdicion']
     año = request.POST['txtAño']
     cantidad = request.POST['txtCantidad']
-    cantidadPres = prestamo.objects.filter(titulo=titulo).count()
-
-    Libro = libro.objects.get(titulo=titulo)
+    cantidadPres = prestamo.objects.filter(codigolibro=codigolibro).count()
+    Libro = libro.objects.get(codigolibro=codigolibro)
+    Libro.titulo =  titulo
     Libro.autor = autor
     Libro.cota = cota
     Libro.editorial = editorial
@@ -235,6 +238,7 @@ def registrarPrestamo(request):
     nombre = request.POST['txtNombre']
     apellido = request.POST['txtApellido']
     escuela = request.POST['txtEscuela']
+    codigolibro = request.POST['txtCodigolibro']
     titulo = request.POST['txtTitulo']
     autor = request.POST['txtAutor']
     semestre = request.POST['txtSemestre']
@@ -258,9 +262,9 @@ def registrarPrestamo(request):
         messages.error(request, "ERROR:  No se pudo eliminar porque el usuario ya tiene 4 prestamos")
 
     else:
-        Prestamo = prestamo.objects.create(codigo = codigo, tipoUsuario = tipoUsuario, tipoPrestamo = tipoPrestamo, titulo = titulo, autor = autor, cedula = cedula, nombre = nombre, apellido = apellido, semestre = semestre, escuela = escuela, fechaInicial = fechaInicial, fechaFinal = fechaFinal, bibliotecaria = bibliotecaria, observaciones = observaciones)
+        Prestamo = prestamo.objects.create(codigo = codigo, tipoUsuario = tipoUsuario, tipoPrestamo = tipoPrestamo, codigolibro = codigolibro, titulo = titulo, autor = autor, cedula = cedula, nombre = nombre, apellido = apellido, semestre = semestre, escuela = escuela, fechaInicial = fechaInicial, fechaFinal = fechaFinal, bibliotecaria = bibliotecaria, observaciones = observaciones)
 
-        libro.objects.filter(titulo=titulo).update(cantidadPres=F('cantidadPres'))
+        libro.objects.filter(codigolibro=codigolibro).update(cantidadPres=F('cantidadPres'))
         estudiante.objects.filter(cedula=cedula).update(prestamos=F('prestamos'))
         academico.objects.filter(cedula=cedula).update(prestamos=F('prestamos'))
         administrativo.objects.filter(cedula=cedula).update(prestamos=F('prestamos'))
@@ -270,11 +274,11 @@ def registrarPrestamo(request):
 
 def eliminarPrestamo(request, codigo):
     Prestamo = prestamo.objects.get(codigo=codigo)
-    titulo = Prestamo.titulo
+    codigolibro = Prestamo.codigolibro
     cedula = Prestamo.cedula
     Prestamo.delete()
 
-    libro.objects.filter(titulo=titulo).update(cantidadPres=F('cantidadPres') - 1)
+    libro.objects.filter(codigolibro=codigolibro).update(cantidadPres=F('cantidadPres') - 1)
     estudiante.objects.filter(cedula=cedula).update(prestamos=F('prestamos') - 1)
     academico.objects.filter(cedula=cedula).update(prestamos=F('prestamos') - 1)
     administrativo.objects.filter(cedula=cedula).update(prestamos=F('prestamos') - 1)
@@ -297,6 +301,7 @@ def editarPrestamo(request):
     nombre = request.POST['txtNombre']
     apellido = request.POST['txtApellido']
     escuela = request.POST['txtEscuela']
+    codigolibro = request.POST['txtCodigolibro']
     titulo = request.POST['txtTitulo']
     autor = request.POST['txtAutor']
     semestre = request.POST['txtSemestre']
@@ -313,6 +318,7 @@ def editarPrestamo(request):
     Prestamo.nombre = nombre
     Prestamo.apellido = apellido
     Prestamo.escuela = escuela
+    Prestamo.codigolibro = codigolibro
     Prestamo.titulo = titulo
     Prestamo.semestre = semestre
     Prestamo.tipoPrestamo = tipoPrestamo
@@ -323,8 +329,8 @@ def editarPrestamo(request):
     Prestamo.observaciones =observaciones
     Prestamo.save()
 
-    prestamosLibro_count = prestamo.objects.filter(titulo=titulo).count()
-    libro.objects.filter(titulo=titulo).update(cantidadPres=prestamosLibro_count)
+    prestamosLibro_count = prestamo.objects.filter(codigolibro=codigolibro).count()
+    libro.objects.filter(codigolibro=codigolibro).update(cantidadPres=prestamosLibro_count)
     
     prestamos_count = prestamo.objects.filter(cedula=cedula).count()
     estudiante.objects.filter(cedula=cedula).update(prestamos=prestamos_count)

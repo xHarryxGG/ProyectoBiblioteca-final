@@ -217,6 +217,18 @@ main td .btn {
   font-size: 14px;
 }
 
+.form-Barras {
+  display: flex;
+  flex-direction: column;
+}
+.form-Barras input {
+  width: 60%;
+}
+.form-Barras button {
+  width: 60px !important;
+  height: 40px;
+}
+
 @media (max-width: 550px) {
   header .name h2 {
     font-size: medium;

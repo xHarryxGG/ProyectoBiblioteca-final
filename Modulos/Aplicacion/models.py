@@ -59,8 +59,9 @@ class administrativo(models.Model):
         return f"{self.nombre} {self.apellido} {self.cedula}"
 
 class libro(models.Model):
+    codigolibro = models.CharField(primary_key=True, default=1, max_length=25)
     autor = models.CharField(max_length=20)
-    titulo = models.CharField(max_length=20, primary_key=True)
+    titulo = models.CharField(max_length=20)
     cota = models.CharField(max_length=20)
     editorial = models.CharField(max_length=20)
     edicion = models.CharField(max_length=20)
@@ -69,10 +70,11 @@ class libro(models.Model):
     cantidadPres = models.CharField(max_length=6, default=0)
 
     def __str__(self):
-        return f"{self.autor} {self.titulo}"
+        return f"{self.codigolibro} {self.autor} {self.titulo}"
 
 class prestamo(models.Model):
     codigo = models.AutoField(primary_key=True, default=1)
+    codigolibro = models.CharField(max_length=25, default=1)
     autor = models.CharField(max_length=20, default="")
     titulo = models.CharField(max_length=20, default="")
     usuarios = [

@@ -14,6 +14,10 @@
                         placeholder="Código..." maxlength="20" required readonly value="{{Prestamo.codigo}}">
                 </div>
                 <div class="form-group">
+                    <input type="text" id="txtCodigolibro" name="txtCodigolibro" class="form-control txtCodigolibro" placeholder="Código de libro..."
+                        maxlength="25" required value="{{Prestamo.codigolibro}}">
+                </div>
+                <div class="form-group">
                     <select type="text" id="txtAutor" name="txtAutor" class="form-control form-select"
                         placeholder="Autor..." required value="{{Prestamo.autor}}">
                         <option value="{{Prestamo.autor}}" selected class="text-muted">{{Prestamo.autor}}</option>

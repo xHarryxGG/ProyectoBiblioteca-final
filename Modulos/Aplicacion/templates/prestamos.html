@@ -17,6 +17,10 @@
             <div class="card-body">
                 <form action="/registrarPrestamo/" method="POST">{% csrf_token %}
                     <div class="form-group">
+                        <input type="text" id="txtCodigolibro" name="txtCodigolibro" class="form-control txtCodigolibro" placeholder="Código de libro..."
+                            maxlength="25" required>
+                    </div>
+                    <div class="form-group">
                         <select type="text" id="txtAutor" name="txtAutor" class="form-control form-select"
                             placeholder="Autor..." required>
                             <option value="" disabled selected class="text-muted">Autor...</option>
@@ -128,6 +132,7 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">Código</th>
+                        <th class="text-center">Código libro</th>
                         <th class="text-center">Autor</th>
                         <th class="text-center">Título</th>
                         <th class="text-center">Tipo de Usuario</th>
@@ -149,6 +154,7 @@
                     <tr>
                         <td>{{forloop.counter}}</td>
                         <td>{{c.codigo}}</td>
+                        <td>{{c.codigolibro}}</td>
                         <td>{{c.autor}}</td>
                         <td>{{c.titulo}}</td>
                         <td>{{c.tipoUsuario}}</td>

@@ -17,8 +17,12 @@
             <div class="card-body">
                 <form action="../registrarLibro/" method="POST">{% csrf_token %}
                     <div class="form-group">
+                        <input type="text" id="txtCodigolibro" name="txtCodigolibro" class="form-control" placeholder="Código..."
+                            maxlength="25" required>
+                    </div>
+                    <div class="form-group">
                         <input type="text" id="txtTitulo" name="txtTitulo" class="form-control" placeholder="Título..."
-                            maxlength="20" required>
+                            maxlength="30" required>
                     </div>
                     <div class="form-group">
                         <input type="text" id="txtAutor" name="txtAutor" class="form-control" placeholder="Autor..."
@@ -44,7 +48,6 @@
                         <input type="number" id="txtCantidad" name="txtCantidad" class="form-control" placeholder="Cantidad..."
                             maxlength="6" required>
                     </div>
-                    
                     <div class="form-group">
                         <button type="submit">
                             Guardar
@@ -62,6 +65,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">#</th>
+                        <th class="text-center">Código</th>
                         <th class="text-center">Título</th>
                         <th class="text-center">Autor</th>
                         <th class="text-center">Cota</th>
@@ -77,6 +81,7 @@
                     {% for c in libros %}
                     <tr>
                         <td>{{forloop.counter}}</td>
+                        <td>{{c.codigolibro}}</td>
                         <td>{{c.titulo}}</td>
                         <td>{{c.autor}}</td>
                         <td>{{c.cota}}</td>
@@ -86,10 +91,10 @@
                         <td>{{c.cantidad}}</td>
                         <td>{{c.cantidadPres}}</td>
                         <td>
-                            <a href="../edicionLibro/{{c.titulo}}" class="btn btn-info">
+                            <a href="../edicionLibro/{{c.codigolibro}}" class="btn btn-info">
                                 <img src="../static/images/editar.svg" alt="editar" width="20px">
                             </a>
-                            <a href="../eliminarLibro/{{c.titulo}}" class="btn btn-danger btnEliminacion">
+                            <a href="../eliminarLibro/{{c.codigolibro}}" class="btn btn-danger btnEliminacion">
                                 <img src="../static/images/eliminar.svg" alt="eliminar" width="20px">
                             </a>
                         </td>

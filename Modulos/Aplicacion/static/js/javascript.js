@@ -8,6 +8,7 @@ const dataTableOptions = {
         url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
         lengthMenu: "Mostrar _MENU_ registros",
         info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
+        search: "Buscar:",
     }
 };
 

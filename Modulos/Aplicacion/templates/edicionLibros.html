@@ -10,8 +10,12 @@
         <div class="card-body">
             <form action="/editarLibro/" method="POST">{% csrf_token %}
                 <div class="form-group">
+                    <input type="text" id="txtCodigolibro" name="txtCodigolibro"  value="{{Libro.codigolibro}}" class="form-control" placeholder="Código..."
+                        maxlength="25" required readonly>
+                </div>
+                <div class="form-group">
                     <input type="text" id="txtTitulo" name="txtTitulo"  value="{{Libro.titulo}}" class="form-control" placeholder="Título..."
-                        maxlength="20" required readonly>
+                        maxlength="30" required>
                 </div>
                 <div class="form-group">
                     <input type="text" id="txtAutor" name="txtAutor" value="{{Libro.autor}}" class="form-control" placeholder="Autor..."

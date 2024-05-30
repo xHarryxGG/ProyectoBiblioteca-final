@@ -26,9 +26,9 @@ urlpatterns = [
     #---------------------libros---------------------
     path('li/', views.homeLibros),
     path('registrarLibro/', views.registrarLibro),
-    path('edicionLibro/<titulo>', views.edicionLibro),
+    path('edicionLibro/<codigolibro>', views.edicionLibro),
     path('editarLibro/', views.editarLibro),
-    path('eliminarLibro/<titulo>', views.eliminarLibro),
+    path('eliminarLibro/<codigolibro>', views.eliminarLibro),
 
     #---------------------prestamos---------------------
     path('pre/', views.homePrestamos),
