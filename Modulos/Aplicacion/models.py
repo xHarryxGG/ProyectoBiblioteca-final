@@ -61,7 +61,7 @@ class administrativo(models.Model):
 class libro(models.Model):
     codigolibro = models.CharField(primary_key=True, default=1, max_length=25)
     autor = models.CharField(max_length=20)
-    titulo = models.CharField(max_length=20)
+    titulo = models.CharField(max_length=35)
     cota = models.CharField(max_length=20)
     editorial = models.CharField(max_length=20)
     edicion = models.CharField(max_length=20)

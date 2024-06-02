@@ -13,9 +13,49 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
     width: 100%;
     height: 100vh;
     background: url("../../static/images/background-login.jpg");
+
+    .logo-container {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        top: 0;
+        right: 0;
+
+
+        .ugma-container {
+            display: flex;
+            align-items: end;
+            flex-direction: column;
+            width: 600px;
+
+            h2 {
+                font-size: 35px;
+                font-weight: bold;
+                color: #002863;
+                margin: 0;
+                text-shadow: 2px 2px 4px rgba(255, 254, 254, 0.5);
+            }
+
+            h3 {
+                font-size: 30px;
+                font-weight: bold;
+                color: #002863;
+                margin: 0;
+                text-shadow: 2px 2px 4px rgba(255, 254, 254, 0.5);
+            }
+        }
+
+        img {
+            width: 150px;
+        }
+    }
+
 
     .form-contact {
         display: flex;
@@ -77,6 +117,30 @@ main {
         button:hover .overlay {
             width: 100%;
         }
+    }
+}
+
+@media (max-width:620px){
+    .logo-container {
+        margin-top: 20px;
+
+        .ugma-container {
+            width: 240px !important;
+
+            h2 {
+                font-size: 27px !important;
+                text-align: center !important;
+            }
+            h3 {
+                font-size: 22px !important;
+                text-align: center !important;
+            }
+        }
+
+        img {
+            width: 110px !important;
+        }
+       
     }
 }
 

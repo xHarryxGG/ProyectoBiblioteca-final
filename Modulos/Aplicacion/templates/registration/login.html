@@ -12,6 +12,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,500&family=Roboto:wght@500&display=swap" rel="stylesheet">
 <body>
     <main>
+        <div class="logo-container">
+            <div class="ugma-container">
+                <h3>Universidad Nororiental Privada</h2>
+                <h2>"Gran Mariscal De Ayacucho"</h2>
+            </div>
+            <img src="../../static/images/logoUgma.png" alt="">
+        </div>
         <form class="form-contact" method="POST">{% csrf_token %}
             <h2>Inicio de sesión</h2>
             <input type="text" name="username" placeholder="Usuario..." required>
