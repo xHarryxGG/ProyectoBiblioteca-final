@@ -4,6 +4,11 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.contrib.auth.models import User
+
+# Crear un usuario y guardarlo en la base de datos
+user = User.objects.create_user(username='admin', email='harryjose.sp777@gmail.com', password='777')
+user.save()
 
 # ------------------Estudiantes-----------------------
 
