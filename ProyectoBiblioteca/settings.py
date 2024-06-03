@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'ProyectoBiblioteca.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
@@ -87,7 +87,7 @@ DATABASES = {
 DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600)
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
