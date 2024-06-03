@@ -3,7 +3,6 @@ databases:
     plan: free
     databaseName: proyecto_biblioteca
     user: proyecto_user
-    password: 777
 
 services:
   - type: web
