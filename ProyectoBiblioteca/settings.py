@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'ProyectoBiblioteca.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://admin:admin@localhost/postgres',
+        default='postgres://proyecto_user:MKTmLqInKzbnl8YwNyBsehUjDQVerZut@dpg-cpehqjfsc6pc739hkup0-a.oregon-postgres.render.com/proyecto_biblioteca',
         conn_max_age=600
     )
 }
