@@ -16,7 +16,7 @@ main {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url("../images/background-login.jpg");
+  background: url("../../staticfiles/images/background-login.jpg");
 }
 main .logo-container {
   position: absolute;
@@ -132,4 +132,4 @@ main .form-contact button:hover .overlay {
   main .form-contact {
     width: 100%;
   }
-}/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=login.7847fd38ccf8.css.map */
