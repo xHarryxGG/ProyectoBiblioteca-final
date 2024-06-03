@@ -1,8 +1,8 @@
 databases:
   - name: ProyectoBibliotecadb
     plan: free
-    databaseName: ProyectoBiblioteca
-    user: ProyectoBiblioteca
+    databaseName: proyecto_biblioteca
+    user: proyecto_user
 
 services:
   - type: web
